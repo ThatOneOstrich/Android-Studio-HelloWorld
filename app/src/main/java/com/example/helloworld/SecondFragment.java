@@ -4,12 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.helloworld.databinding.FragmentSecondBinding;
+
+import java.util.Random;
 
 public class SecondFragment extends Fragment {
 
@@ -28,6 +31,19 @@ public class SecondFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Integer count = SecondFragmentArgs.fromBundle(getArguments()).getMyArg();
+        String countText = getString(R.string.random_heading, count);
+        TextView headerView = view.getRootView().findViewById(R.id.textview_header);
+        headerView.setText(countText);
+//
+//        Random random = new java.util.Random();
+//        Integer randomNumber = 0;
+//        if (count > 0) {
+//            randomNumber = random.nextInt(count + 1);
+//        }
+//        TextView randomView = view.getRootView().findViewById(R.id.textview_random);
+//        randomView.setText(randomNumber.toString());
+//
 
         binding.buttonSecond.setOnClickListener(v ->
                 NavHostFragment.findNavController(SecondFragment.this)
